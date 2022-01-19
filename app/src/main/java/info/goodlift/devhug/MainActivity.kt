@@ -9,6 +9,9 @@ import com.google.android.things.pio.PeripheralManager
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    val hat = Devices()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,6 +21,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val manager=PeripheralManager.getInstance()
         Log.d(TAG, "Available GPIO: " + manager.gpioList)
+
+        hat.apply {
+            buttonA.onClick {
+                if (it) {
+                    if(ledRed.value){
+                        ledRed.off()
+                    }
+                    else{
+                        ledRed.on()
+                    }
+
+                }
+                buttonB.onClick {
+
+                }
+                buttonC.onClick {
+                    if (it) {
+                        ledRed.on()
+                        ledGreen.off()
+                        ledBlue.on()
+
+                    }
+                }
+            }
+        }
     }
 
     companion object{
@@ -26,5 +54,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         exitProcess(-1)
+    }
+
+    override fun onDestroy() {
+        hat.onDestroy()
+        super.onDestroy()
     }
 }
