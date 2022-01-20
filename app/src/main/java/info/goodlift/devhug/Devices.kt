@@ -27,6 +27,8 @@ class Devices {
 
     fun Gpio.off() { value = false }
 
+    fun Gpio.toggle(){value = !value}
+
     fun onDestroy() {
         if (initButtonA) buttonA.close()
         if (initButtonB) buttonB.close()

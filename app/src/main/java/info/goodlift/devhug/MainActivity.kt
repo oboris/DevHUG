@@ -10,45 +10,46 @@ import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    val hat = Devices()
+    private val hat = Devices()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val exitBtn : Button = findViewById(R.id.exit_button)
+        val exitBtn: Button = findViewById(R.id.exit_button)
         exitBtn.setOnClickListener(this)
 
-        val manager=PeripheralManager.getInstance()
+        val manager = PeripheralManager.getInstance()
         Log.d(TAG, "Available GPIO: " + manager.gpioList)
 
         hat.apply {
             buttonA.onClick {
                 if (it) {
-                    if(ledRed.value){
+                    if (ledRed.value) {
                         ledRed.off()
-                    }
-                    else{
+                    } else {
                         ledRed.on()
                     }
-
                 }
-                buttonB.onClick {
-
+            }
+            buttonB.onClick {
+                if (it) {
+                    ledGreen.toggle()
                 }
-                buttonC.onClick {
-                    if (it) {
-                        ledRed.on()
-                        ledGreen.off()
+            }
+            buttonC.onClick {
+                if (it) {
+                    if (ledBlue.value) {
+                        ledBlue.off()
+                    } else {
                         ledBlue.on()
-
                     }
                 }
             }
         }
     }
 
-    companion object{
+    companion object {
         private const val TAG = "MainActivity"
     }
 
