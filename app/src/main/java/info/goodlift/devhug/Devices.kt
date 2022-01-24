@@ -14,12 +14,16 @@ class Devices {
     private var initLedGreen = false
     private var initLedBlue = false
 
-    val buttonA: Button by lazy { initButtonA = true; RainbowHat.openButtonA() }
+//    val buttonA: Button by lazy { initButtonA = true; RainbowHat.openButtonA() }
+    val buttonA: Button
     val buttonB: Button by lazy { initButtonB = true; RainbowHat.openButtonB() }
     val buttonC: Button by lazy { initButtonC = true; RainbowHat.openButtonC() }
+
     val ledRed: Gpio by lazy { initLedRed = true; RainbowHat.openLedRed() }
     val ledGreen: Gpio by lazy { initLedGreen = true; RainbowHat.openLedGreen() }
     val ledBlue: Gpio by lazy { initLedBlue = true; RainbowHat.openLedBlue() }
+
+
 
     fun Button.onClick(onPress: (Boolean) -> Unit) = setOnButtonEventListener { _, pressed -> onPress(pressed) }
 

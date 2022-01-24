@@ -23,13 +23,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d(TAG, "Available GPIO: " + manager.gpioList)
 
         hat.apply {
+
             buttonA.onClick {
                 if (it) {
-                    if (ledRed.value) {
-                        ledRed.off()
-                    } else {
-                        ledRed.on()
-                    }
+                    ledRed.toggle()
                 }
             }
             buttonB.onClick {
@@ -39,11 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             buttonC.onClick {
                 if (it) {
-                    if (ledBlue.value) {
-                        ledBlue.off()
-                    } else {
-                        ledBlue.on()
-                    }
+                    ledBlue.toggle()
                 }
             }
         }
